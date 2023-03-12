@@ -11,7 +11,6 @@ import authrouter from './router/auth.js';
 import skillRouter from "./router/skill.js";
 import testimonialRouter from "./router/testimonial.js";
 import projectRouter from "./router/project.js";
-import {verifyAdmin} from "./utils/verifyToken.js"
 //connect mongodb
 
 const corsOptions = {
@@ -19,7 +18,7 @@ const corsOptions = {
   credentials:true
 }
 dotenv.config();
-const port = process.env.PORT ||8000;
+const port = process.env.PORT || 8000;
 const app = express();
 
 // database connect
@@ -45,9 +44,6 @@ app.use('/api/v1/user',userrouter)
 app.use('/api/v1/skill',skillRouter)
 app.use('/api/v1/testimonial',testimonialRouter)
 app.use('/api/v1/project',projectRouter)
-
-
-
 
 
 app.listen(port, () => {
