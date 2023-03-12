@@ -48,9 +48,7 @@ app.use('/api/v1/project',projectRouter)
 
 
 
-app.get("/api/v1/admin",verifyAdmin,(req,res)=>{
-    res.json({success:true,message:"chao mung admin"})
-})
+
 
 app.listen(port, () => {
     console.log("server run on port",port);
