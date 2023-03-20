@@ -2,8 +2,6 @@ import User from "../model/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-
-
 export const register = async (req, res) => {
   try {
     // hashing pass
@@ -25,6 +23,7 @@ export const register = async (req, res) => {
 };
 // user login
 export const login = async (req, res) => {
+  console.log(req.body.email);
   try {
     const email = req.body.email;
     const user = await User.findOne({ email });
