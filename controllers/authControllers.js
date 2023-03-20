@@ -25,7 +25,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const email = req.body.email;
-    console.log(email);
+    console.log(req.body.email);
     const user = await User.findOne({ email });
     console.log(user);
     if (!user) {
@@ -45,7 +45,6 @@ export const login = async (req, res) => {
       { expiresIn: "15d" }
     );
     // // set token in browser and send to client
-    if (user && checkCorrect) {
       res
         .cookie("accessToken", token, {
           httpOnly: true,
@@ -59,7 +58,6 @@ export const login = async (req, res) => {
           data: { ...rest },
           role,
         });
-    }
   } catch (err) {
 
     res.status(500).json({ success: false, message: "loi server" });
