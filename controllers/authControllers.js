@@ -23,10 +23,11 @@ export const register = async (req, res) => {
 };
 // user login
 export const login = async (req, res) => {
-  console.log(req.body.email);
   try {
     const email = req.body.email;
+    console.log(email);
     const user = await User.findOne({ email });
+    console.log(user);
     if (!user) {
       res.status(404).json({ success: false, message: "User not found" });
     }
@@ -60,6 +61,7 @@ export const login = async (req, res) => {
         });
     }
   } catch (err) {
+
     res.status(500).json({ success: false, message: "loi server" });
   }
 };
