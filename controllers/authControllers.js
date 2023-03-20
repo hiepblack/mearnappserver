@@ -61,6 +61,6 @@ export const login = async (req, res) => {
         });
     }
   } catch (err) {
-    res.status(500).json({ success: false, message: "Failed to login" });
+    res.status(500).json({ success: false, message: "loi server" });
   }
 };
