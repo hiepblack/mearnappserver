@@ -23,11 +23,9 @@ export const register = async (req, res) => {
 };
 // user login
 export const login = async (req, res) => {
+  const email = req.body.email;
   try {
-    const email = req.body.email;
-    console.log(req.body.email);
     const user = await User.findOne({ email });
-    console.log(user);
     if (!user) {
       res.status(404).json({ success: false, message: "User not found" });
     }
@@ -44,23 +42,15 @@ export const login = async (req, res) => {
       process.env.JWT_SECRET_KEY,
       { expiresIn: "15d" }
     );
-    console.log(token);
-    // // set token in browser and send to client
-      res
-        .cookie("accessToken", token, {
-          httpOnly: true,
-          expires: token.expiresIn,
-        })
-        .status(200)
-        .json({
-          success: true,
-          message: "Login success",
-          token,
-          data: { ...rest },
-          role,
-        });
+    // set token in browser and send to client
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        expires: token.expiresIn,
+      })
+      .status(200)
+      .json({ token, data: { ...rest }, role });
   } catch (err) {
-
-    res.status(500).json({ success: false, message: "loi server" });
+    res.status(500).json({ success: false, message: "Failed to login" });
   }
 };
